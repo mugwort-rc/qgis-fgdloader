@@ -1,0 +1,390 @@
+<ui version="4.0" >
+ <class>FGDLoaderDialogBase</class>
+ <widget class="QDialog" name="FGDLoaderDialogBase" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>556</width>
+    <height>363</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>FGDLoader</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_5">
+   <item row="1" column="0">
+    <widget class="QDialogButtonBox" name="button_box">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tabTest">
+      <attribute name="title">
+       <string>Test</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLineEdit" name="lineEdit">
+           <property name="placeholderText">
+            <string>File</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButton">
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QCheckBox" name="checkBoxInto">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>into</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QgsMapLayerComboBox" name="comboBoxLayer"/>
+         </item>
+        </layout>
+       </item>
+       <item row="2" column="0">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>196</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabXML">
+      <attribute name="title">
+       <string>XML</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0" rowspan="2">
+        <widget class="QListView" name="listViewXML">
+         <property name="selectionMode">
+          <enum>QAbstractItemView::MultiSelection</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QDialogButtonBox" name="buttonBoxXML">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="standardButtons">
+          <set>QDialogButtonBox::Close|QDialogButtonBox::Open|QDialogButtonBox::Reset</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabArchive">
+      <attribute name="title">
+       <string>Archive</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="1" column="1">
+        <widget class="QCheckBox" name="checkBoxDEM">
+         <property name="text">
+          <string>DEM</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="QCheckBox" name="checkBoxCntr">
+         <property name="text">
+          <string>Cntr</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QCheckBox" name="checkBoxBldA">
+         <property name="text">
+          <string>BldA</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QCheckBox" name="checkBoxDGHM">
+         <property name="text">
+          <string>DGHM</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QCheckBox" name="checkBoxSBAPt">
+         <property name="text">
+          <string>SBAPt</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="2">
+        <widget class="QCheckBox" name="checkBoxRdMgtBdry">
+         <property name="text">
+          <string>RdMgtBdry</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QCheckBox" name="checkBoxWStrL">
+         <property name="text">
+          <string>WStrL</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QCheckBox" name="checkBoxCommBdry">
+         <property name="text">
+          <string>CommBdry</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="4">
+        <widget class="QCheckBox" name="checkBoxCommPt">
+         <property name="text">
+          <string>CommPt</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="4">
+        <widget class="QCheckBox" name="checkBoxRvrMgtBdry">
+         <property name="text">
+          <string>RvrMgtBdry</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QCheckBox" name="checkBoxAdmPt">
+         <property name="text">
+          <string>AdmPt</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="5">
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0" rowspan="2">
+          <widget class="QListView" name="listViewArchive">
+           <property name="selectionMode">
+            <enum>QAbstractItemView::MultiSelection</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QDialogButtonBox" name="buttonBoxArchive">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="standardButtons">
+            <set>QDialogButtonBox::Close|QDialogButtonBox::Open|QDialogButtonBox::Reset</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="5" column="3">
+        <widget class="QCheckBox" name="checkBoxRdCompt">
+         <property name="text">
+          <string>RdCompt</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="4">
+        <widget class="QCheckBox" name="checkBoxWL">
+         <property name="text">
+          <string>WL</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="checkBoxAdmArea">
+         <property name="text">
+          <string>AdmArea</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QCheckBox" name="checkBoxAdmBdry">
+         <property name="text">
+          <string>AdmBdry</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QCheckBox" name="checkBoxElevPt">
+         <property name="text">
+          <string>ElevPt</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="checkBoxGCP">
+         <property name="text">
+          <string>GCP</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QCheckBox" name="checkBoxRdEdg">
+         <property name="text">
+          <string>RdEdg</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QCheckBox" name="checkBoxRdArea">
+         <property name="text">
+          <string>RdArea</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="4">
+        <widget class="QCheckBox" name="checkBoxRdASL">
+         <property name="text">
+          <string>RdASL</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <widget class="QCheckBox" name="checkBoxLeveeEdge">
+         <property name="text">
+          <string>LeveeEdge</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="3">
+        <widget class="QCheckBox" name="checkBoxWA">
+         <property name="text">
+          <string>WA</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QCheckBox" name="checkBoxWStrA">
+         <property name="text">
+          <string>WStrA</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QCheckBox" name="checkBoxCStline">
+         <property name="text">
+          <string>CStline</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QCheckBox" name="checkBoxSBBdry">
+         <property name="text">
+          <string>SBBdry</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QCheckBox" name="checkBoxSBArea">
+         <property name="text">
+          <string>SBArea</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QCheckBox" name="checkBoxRdSgmtA">
+         <property name="text">
+          <string>RdSgmtA</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QCheckBox" name="checkBoxBldL">
+         <property name="text">
+          <string>BldL</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="3">
+        <widget class="QCheckBox" name="checkBoxRailCL">
+         <property name="text">
+          <string>RailCL</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QgsMapLayerComboBox</class>
+   <extends>QComboBox</extends>
+   <header location="global">qgis/gui</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>button_box</sender>
+   <signal>accepted()</signal>
+   <receiver>FGDLoaderDialogBase</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_box</sender>
+   <signal>rejected()</signal>
+   <receiver>FGDLoaderDialogBase</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
