@@ -1,22 +1,23 @@
-from PyQt4.QtCore import QVariant
+from builtins import object
+from qgis.PyQt.QtCore import QVariant
 from qgis.core import *
 
 from . import jpgis
 from .feature import WKB_TYPE
 
 
-class JPGISLayers:
+class JPGISLayers(object):
     def __init__(self, tr={}):
         self.tr = tr
         self.layers = {}
 
     def values(self):
-        return self.layers.values()
+        return list(self.layers.values())
 
     def addFeatures(self, handler, **kwargs):
         into = kwargs.get("into")
         changed = []
-        for key, value in handler.features.items():
+        for key, value in list(handler.features.items()):
             if key not in self.layers:
                 if into is not None and self.check_same(key, into):
                     self.layers[key] = into

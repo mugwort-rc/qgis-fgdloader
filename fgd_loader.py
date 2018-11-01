@@ -20,23 +20,25 @@
  *                                                                         *
  ***************************************************************************/
 """
+from __future__ import absolute_import
+from builtins import object
 from qgis.core import *
-from qgis.gui import QgsMapLayerProxyModel
-from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
-from PyQt4.QtCore import QFileInfo, QVariant
-from PyQt4.QtGui import QAction, QIcon
+from qgis.PyQt.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
+from qgis.PyQt.QtCore import QFileInfo, QVariant
+from qgis.PyQt.QtWidgets import QAction
+from qgis.PyQt.QtGui import QIcon
 # Initialize Qt resources from file resources.py
-import resources
+from . import resources
 # Import the code for the dialog
-from fgd_loader_dialog import FGDLoaderDialog
-import jpgis
-from jpgis import layer as jpgis_layer
+from .fgd_loader_dialog import FGDLoaderDialog
+from . import jpgis
+from .jpgis import layer as jpgis_layer
 import os.path
 import xml.sax
 import zipfile
 
 
-class FGDLoader:
+class FGDLoader(object):
     """QGIS Plugin Implementation."""
 
     def __init__(self, iface):
@@ -200,7 +202,7 @@ class FGDLoader:
             # Test
             if self.dlg.tabWidget.currentWidget() == self.dlg.tabTest:
                 filepath = self.dlg.lineEdit.text()
-                with open(filepath) as fp:
+                with open(filepath, encoding="utf-8") as fp:
                     handler = self.loadJPGIS(fp)
                 kwargs = {}
                 if self.dlg.checkBoxInto.isChecked():
@@ -209,7 +211,7 @@ class FGDLoader:
             # XML
             elif self.dlg.tabWidget.currentWidget() == self.dlg.tabXML:
                 for filepath in self.dlg.fileListXML.stringList():
-                    with open(filepath) as fp:
+                    with open(filepath, encoding="utf-8") as fp:
                         handler = self.loadJPGIS(fp)
                     layers.addFeatures(handler)
             # Archive
@@ -220,7 +222,7 @@ class FGDLoader:
                             for name in zfp.namelist():
                                 if not name.endswith(".xml"):
                                     continue
-                                for key, test in self.dlg.archiveTargets().items():
+                                for key, test in list(self.dlg.archiveTargets().items()):
                                     if not test:
                                         continue
                                     if key not in name:
@@ -231,8 +233,8 @@ class FGDLoader:
                                     break
                     except:
                         raise
-            for layer in layers.values():
-                QgsMapLayerRegistry.instance().addMapLayer(layer)
+            for layer in list(layers.values()):
+                QgsProject.instance().addMapLayer(layer)
 
 
     def loadJPGIS(self, fp):

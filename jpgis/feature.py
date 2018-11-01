@@ -1,7 +1,8 @@
+from builtins import object
 from qgis.core import *
 
 
-class Feature:
+class Feature(object):
     def __init__(self):
         self.properties = {}
         self.coordinates = []
@@ -44,7 +45,7 @@ class Point(Feature):
         f = QgsFeature(fields)
         self._applyProperties(f, fields)
         y, x = self.coordinates
-        f.setGeometry(QgsGeometry.fromPoint(QgsPoint(x, y)))
+        f.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(x, y)))
         return f
 
     @property
@@ -77,9 +78,9 @@ class Polygon(Feature):
             points = []
             for coord in items:
                 y, x = coord
-                points.append(QgsPoint(x, y))
+                points.append(QgsPointXY(x, y))
             polygon.append(points)
-        f.setGeometry(QgsGeometry.fromPolygon(polygon))
+        f.setGeometry(QgsGeometry.fromPolygonXY(polygon))
         return f
 
     def setGeometry(self, g):

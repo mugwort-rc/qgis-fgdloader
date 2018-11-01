@@ -8,7 +8,7 @@
 
 [general]
 name=FGDLoader
-qgisMinimumVersion=2.0
+qgisMinimumVersion=3.0
 description=FGD(JPGIS) file loader
 version=0.1
 author=mugwort_rc

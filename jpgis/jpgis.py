@@ -1,5 +1,8 @@
 # -*- conding: utf-8 -*-
 
+from builtins import zip
+from builtins import map
+from builtins import object
 from collections import defaultdict
 import xml.sax.handler
 
@@ -18,7 +21,7 @@ def _fgd(name):
     return (FGD_Namespace, name)
 
 
-class GML:
+class GML(object):
     Namespace = GML_Namespace
 
     id = _gml("id")
@@ -33,7 +36,7 @@ class GML:
     ]
 
 
-class FGD:
+class FGD(object):
     """XML Schema for Down Loaded Fundamental Geospatial Data"""
 
     Namespace = FGD_Namespace
@@ -576,7 +579,7 @@ class JPGISHandler(xml.sax.handler.ContentHandler):
         self.current_feature.setGeometry(points)
 
     def line2coordinate(self, text):
-        return map(float, text.strip().split())
+        return list(map(float, text.strip().split()))
 
     def characters(self, content):
         if self._tstack:

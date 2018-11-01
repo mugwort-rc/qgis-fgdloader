@@ -23,13 +23,13 @@
 
 import os
 
-from PyQt4 import QtCore, QtGui, uic
+from qgis.PyQt import QtCore, QtGui, QtWidgets, uic
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'fgd_loader_dialog_base.ui'))
 
 
-class FGDLoaderDialog(QtGui.QDialog, FORM_CLASS):
+class FGDLoaderDialog(QtWidgets.QDialog, FORM_CLASS):
     def __init__(self, parent=None):
         """Constructor."""
         super(FGDLoaderDialog, self).__init__(parent)
@@ -40,10 +40,10 @@ class FGDLoaderDialog(QtGui.QDialog, FORM_CLASS):
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
         # model
-        self.fileListXML = QtGui.QStringListModel()
-        self.fileListArchive = QtGui.QStringListModel()
-        self.selectionXML = QtGui.QItemSelectionModel(self.fileListXML)
-        self.selectionArchive = QtGui.QItemSelectionModel(self.fileListArchive)
+        self.fileListXML = QtCore.QStringListModel()
+        self.fileListArchive = QtCore.QStringListModel()
+        self.selectionXML = QtCore.QItemSelectionModel(self.fileListXML)
+        self.selectionArchive = QtCore.QItemSelectionModel(self.fileListArchive)
         self.listViewXML.setModel(self.fileListXML)
         self.listViewArchive.setModel(self.fileListArchive)
         self.listViewXML.setSelectionModel(self.selectionXML)
@@ -86,7 +86,7 @@ class FGDLoaderDialog(QtGui.QDialog, FORM_CLASS):
 
     @QtCore.pyqtSlot()
     def on_toolButton_clicked(self):
-        filepath = QtGui.QFileDialog.getOpenFileName(self,
+        filepath, _filter = QtWidgets.QFileDialog.getOpenFileName(self,
                                                      self.tr("Open JPGIS XML"),
                                                      "",
                                                      self.tr("XML(*.xml)"))
@@ -95,37 +95,37 @@ class FGDLoaderDialog(QtGui.QDialog, FORM_CLASS):
         self.setLastOpenPath(filepath)
         self.lineEdit.setText(filepath)
 
-    @QtCore.pyqtSlot(QtGui.QAbstractButton)
+    @QtCore.pyqtSlot(QtWidgets.QAbstractButton)
     def on_buttonBoxXML_clicked(self, button):
         # Reset
-        if self.buttonBoxXML.standardButton(button) == QtGui.QDialogButtonBox.Reset:
+        if self.buttonBoxXML.standardButton(button) == QtWidgets.QDialogButtonBox.Reset:
             self.fileListXML.setStringList([])
         # Open
-        elif self.buttonBoxXML.standardButton(button) == QtGui.QDialogButtonBox.Open:
+        elif self.buttonBoxXML.standardButton(button) == QtWidgets.QDialogButtonBox.Open:
             filelist = self.getOpenFileNamesXML()
             if filelist:
                 self.setLastOpenPath(filelist[0])
             self.fileListXML.setStringList(self.fileListXML.stringList() + filelist)
         # Close
-        elif self.buttonBoxXML.standardButton(button) == QtGui.QDialogButtonBox.Close:
+        elif self.buttonBoxXML.standardButton(button) == QtWidgets.QDialogButtonBox.Close:
             removes = [x.row() for x in self.selectionXML.selectedIndexes()]
             self.fileListXML.setStringList(
                 self.dropIndex(self.fileListXML.stringList(), removes)
             )
 
-    @QtCore.pyqtSlot(QtGui.QAbstractButton)
+    @QtCore.pyqtSlot(QtWidgets.QAbstractButton)
     def on_buttonBoxArchive_clicked(self, button):
         # Reset
-        if self.buttonBoxArchive.standardButton(button) == QtGui.QDialogButtonBox.Reset:
+        if self.buttonBoxArchive.standardButton(button) == QtWidgets.QDialogButtonBox.Reset:
             self.fileListArchive.setStringList([])
         # Open
-        elif self.buttonBoxArchive.standardButton(button) == QtGui.QDialogButtonBox.Open:
+        elif self.buttonBoxArchive.standardButton(button) == QtWidgets.QDialogButtonBox.Open:
             filelist = self.getOpenFileNamesArchive()
             if filelist:
                 self.setLastOpenPath(filelist[0])
             self.fileListArchive.setStringList(self.fileListArchive.stringList() + filelist)
         # Close
-        elif self.buttonBoxArchive.standardButton(button) == QtGui.QDialogButtonBox.Close:
+        elif self.buttonBoxArchive.standardButton(button) == QtWidgets.QDialogButtonBox.Close:
             removes = [x.row() for x in self.selectionArchive.selectedIndexes()]
             self.fileListArchive.setStringList(
                 self.dropIndex(self.fileListArchive.stringList(), removes)
@@ -140,19 +140,22 @@ class FGDLoaderDialog(QtGui.QDialog, FORM_CLASS):
         self.last_open_dir = QtCore.QFileInfo(filepath).dir().absolutePath()
 
     def getOpenFileNameXML(self):
-        return QtGui.QFileDialog.getOpenFileName(self,
+        filename, _filter = QtWidgets.QFileDialog.getOpenFileName(self,
                                                  self.tr("Open JPGIS XML"),
                                                  self.last_open_dir,
                                                  self.tr("XML(*.xml)"))
+        return filename
 
     def getOpenFileNamesXML(self):
-        return QtGui.QFileDialog.getOpenFileNames(self,
+        filenames, _filter = QtWidgets.QFileDialog.getOpenFileNames(self,
                                                  self.tr("Open JPGIS XML"),
                                                  self.last_open_dir,
                                                  self.tr("XML(*.xml)"))
+        return filenames
 
     def getOpenFileNamesArchive(self):
-        return QtGui.QFileDialog.getOpenFileNames(self,
+        filenames, _filter = QtWidgets.QFileDialog.getOpenFileNames(self,
                                                  self.tr("Open JPGIS Archive"),
                                                  self.last_open_dir,
                                                  self.tr("ZIP file(*.zip)"))
+        return filenames
