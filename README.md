@@ -6,3 +6,7 @@
 
 ![Sceenshot](help/source/_static/img/FGDLoader-Archive.png)
 
+## 謝辞
+
+* @muranamihdk - QGIS3対応
+
